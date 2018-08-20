@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // function Frontent() {
+        //     this.name = '大明';
+        //     this.age = 20;
+        //     this.skill = [1,2,2,3]
+        //     this.say = function(){
+        //         console.log('你好' + this.name);
+        //     }
+        // }  
+        
+        // var newFrontent = Frontent();
+        // newFrontent.say();
+        
+
+        // var obj  = {        
+        //     obj.name = '小明'; 
+        //     obj.age = 12;
+        //     obj.showI = function(){
+        //     return name +age;
+        //     }
+        // }
+        
+        // var obj = new Object();
+        // obj.name = '小明';  //变量就是属性
+        // obj.age = 12; //变量就是属性
+        // obj.showI = function(){
+        // console.log(name);
+        // }
+        // obj.showI();
+
+        // function Person(name,age,job){
+        //     this.name = name;
+        //     this.age = age;
+        //     this.job = job;
+        //     this.sayName = function(){
+        //     alert(this.name);
+        //     }; 
+        //     }
+        // var person1 = new Person('Nike',29,'teacher');
+        // var person2 = new Person('Arvin',20,'student');
+            
+
+        // var deng = {
+        //     name:'zhangsan',
+        //     age : '20',
+        //     chengZhang : function(){
+        //         this.age++;
+        //     }
+
+        // }
+
+        // var str = 'abcdef'
+        // str.length = 2;
+        // console.log(str);
+
+        var str = '你好啊...jsdksjd'
+        /**
+         * 判断字符串参数有多少字节；
+         * 
+        */
+        function snum(s){
+            var jielong = 0;
+            for(var i = 0; i < s.length; i++){
+                var ma = s.charCodeAt(i);
+                if(ma <= 255){
+                    jielong = jielong + 1;
+                }else{
+                    jielong = jielong + 2;
+                }
+            }
+            return jielong;
+        }
+        console.log(snum(str));
+
+        function Tsst(){
+            var nice = null;
+            Object.defineProperty(this, '_nice',{
+                get : function(){
+                    return nice;
+                },
+                set : function(){
+                    this.nice = value;
+                }
+            })
+        }
+
+
+        //Person.prototype  --原型
+        //Person.prototype = {}   相当于一个这样的对象，是祖先
+        Person.prototype.xing = 'Deng';
+        Person.prototype.day = function(){
+            console.log('成长中');
+        }
+        function Person(name, age, sex){
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+        }
+        // var person1 = new Person('fangfang', 20, woman);
+        // var person2 = new Person('dahua', 21, male);
+
+        // Obj_one.prototype = {
+
+        // }
+        
+        function Obj_one(){
+
+        }
+        var obj1 = new Obj_one(); 
+
+    </script>
+</body>
+</html>

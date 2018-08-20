@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>限制输入小数</title>
+    <style>
+        .box{
+            border: 1px solid #777;
+            padding: 20px;
+            line-height: 40px;
+        }
+        .box input{
+            width: 160px;
+            height: 40px;
+            line-height: 40px;
+            border: 1px solid #ddd;
+            outline: none;
+            font-size: 16px;
+        }
+        .box input.error{
+            border-color: #f00;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        5 x
+        <input placeholder="正整数"/>
+        =
+        <span>0</span>
+    </div>
+    <script>
+        let boxEl = document.querySelector('.box');
+        let inputEl = boxEl.querySelector('input');
+        let resultEl = boxEl.querySelector('span');
+    
+        inputEl.addEventListener('keyup', function(e){
+            let value = this.value.trim();
+            if( value === '' ){
+                resultEl.innerHTML = '0';
+            }
+
+            // 小数
+            let patt = /^(0\.\d*|[1-9]\d*\.\d+|[1-9]\d*)$/;
+            if(!patt.test(value) && value!=='0'){
+
+            // if(!Number(value)){
+            // let patt = /^(\d|[1-9]\d+)$/; // 正整数
+            // if(!patt.test(value)){
+                this.classList.add('error');
+                return;
+            }
+
+            this.classList.remove('error');
+            this.value = value;
+            resultEl.innerHTML = 5 * Number(value);
+        })
+
+
+    </script>
+</body>
+</html>

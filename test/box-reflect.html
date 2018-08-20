@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box-1{
+            width: 200px;
+            height: 200px;
+            background-color: #ffff00;
+            -webkit-box-reflect: below 10px radial-gradient(100px 100px,rgba(250,250,0,1),rgba(250,250,0,0.1));;
+             
+        }
+        @keyframes transform-3d {
+            0%{
+                transform: rotate(0deg);
+            }
+            100%{
+                /* transform: rotateY(10deg);
+                transform: rotateX(360deg); */
+                /* transform: rotate3d(50px,50px,-50px); */
+            }
+        }
+        .box-3d{
+            width: 200px;
+            height: 200px;
+            transform: perspective(200px);
+            background-color: #999;
+            transform-style: preserve-3d;
+            transform: rotate3d(1,1,1,360deg) ;
+            animation: transform-3d 2s linear 0.5s 10;
+        }
+        .box-3d span {
+            display: block;
+            height: 100px;
+            width: 100px;
+            background-color: burlywood;
+            transform: translateZ(100px); 
+        }
+        .img-box img{
+            /* filter: hue-rotate(20deg); */
+            /* filter: drop-shadow(5px 5px 10px #aaa); */
+        }
+        .box-3d-2{
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            background-color: cadetblue;
+            border: 1px solid #666;
+            transform: translateZ(50px);
+            animation: transform-3d 2s linear 0.5s infinite;
+        }
+        .box2{
+            column-count: 3;
+            column-width: 80px;
+        }
+        .cube-all{
+            width: 200px;
+            height: 200PX;
+            margin: 0 auto;
+            margin-bottom: 100px;
+            transform-style: preserve-3d;
+            transform: rotateY(35deg) rotateZ(-35deg) ; 
+            /* backface-visibility: hidden; */
+            /* perspective: 1000px; */
+        }
+        .six-cube{
+            width: 200px;
+            height: 200PX;
+            transform-style: preserve-3d;
+            position: relative;
+            backface-visibility: visible;
+           
+        }
+        .six-cube div{
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            line-height: 200PX;
+            border: 1px solid #444;
+            position: absolute;
+        }
+        .side-2{
+            background-color: antiquewhite;
+            transform: rotateY(90deg) translateZ(-100px);
+        }
+        .side-4{
+            transform: rotateY(90deg) translateZ(100px);
+        }
+        .side-5{
+            transform: rotateX(90deg) translateZ(100px);
+        }
+        .side-6{
+            transform: rotateX(90deg) translateZ(-100px);
+        }
+        .side-3{
+            transform: translateZ(-100px);
+        }
+        .side-1{
+            background-color: aquamarine;
+            transform: translateZ(100px);
+        }
+    </style>
+</head>
+<body>
+    <div class="box-1">
+    </div>
+    <div class="box-3d">
+        <span></span>
+        nihaoa
+    </div>
+    <div class="box-3d-2"></div>
+    <div class="img-box">
+        <img src="./imgs/多啦.png" alt="">
+    </div>
+    <!-- <p class="box2">
+       就没改节假日放假法解决覅了软件提供配件啊辣椒粉哦if将诶微积分撒
+       覅偶尔案件佛我热加工我价格了噶房间诶见 就没改节假日放假法解决覅了软件
+       提供配件啊辣椒粉哦if将诶微积分撒覅偶尔案件佛我热加工我价格了噶房间诶见 
+        就没改节假日放假法解决覅了软件提供配件啊辣椒粉哦if将诶微积分撒覅偶尔案件佛我热加工我价格了噶房间诶见 
+       就没改节假日放假法解决覅了软件提供配件啊辣椒粉哦if将诶微积分撒
+       覅偶尔案件佛我热加工我价格了噶房间诶见 
+    </p> -->
+    <div class="cube-all">
+        <div class="six-cube">
+            <div class="side-1">1</div>
+            <div class="side-2">2</div>
+            <div class="side-3">3</div>
+            <div class="side-4">4</div>
+            <div class="side-5">5</div>
+            <div class="side-6">6</div>
+        </div>
+    </div>
+</body>
+</html>
