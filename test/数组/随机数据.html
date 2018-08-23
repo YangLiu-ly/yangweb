@@ -6,72 +6,40 @@
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=0.333, user-scalable=no" /> 
     <title>随机数据</title>
-    <style>
-        /* 公共类 */
-        body,
-        ul,p,
-        h1,h2,h3,h4,h5{
-            padding: 0;
-            margin: 0;
-        }
-        /* 标签样式 */
-        .app{
-        }
-        .head{
-            height: 210px;
-            background-color: #303030;
-            line-height: 210px;
-            text-indent: 40px;
-            font-size: 50px;
-            color: #fff;
-        }
-        .content{
-            height: 1710px;
-            overflow: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-        .content li{
-            height: 190px;
-            border-bottom: 1px solid #d9d9d9;
-            box-sizing: border-box;
-            overflow: hidden;
-            list-style: none;
-            display: block;
-        }
-        .student img{
-            width: 144px;
-            height:144px;
-            float: left;
-            margin-left: 42px;
-            margin-top: 23px;
-        }
-        .student h3,.student span{
-            font-weight: 400;
-        }
-        .student h3{
-            font-size:42px;
-            color: #000;
-            float: left; 
-            margin-left: 38px;
-            line-height: 95px; 
-        }
-        .student span{
-            float: left;
-            margin-top: 110px;
-            margin-left: -125px;
-            font-size:34px;
-            color: #9b9b9b;
-        }
-    </style>
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_801135_gxehpn82tvs.css">
 </head>
 <body>
     <section class="app">
         <section class="head">32班学员信息</section>
         <ul id="stuContent" class="content">
-            <section><img src="" alt=""></section>
-            <section><h3></h3></section>
+            <li class="student"><section class="header fleft"> <img src="../imgs/head/2.png" alt="header"></section>
+                <section class="stuMessage fleft"><h3>张佳玉</h3> <span>打球，游泳</span></section>
+                <section class="hint fright">12:00</section>
+            </li>
         </ul>
-        <!-- <section class="menu"></section> -->
+        <section class="menu">
+            <a class="menu-item active">
+                <i class="iconfont icon-message" data-default></i>
+                <i class="iconfont icon-xiaoxi" data-active></i>
+                <h5>微信</h5>
+            </a>
+            <a class="menu-item active">
+                <i class="iconfont icon-mn_tongxunlu" data-default></i>
+                <i class="iconfont icon-mn_tongxunlu_fill" data-active></i>
+                <h5>通讯录</h5>
+            </a>
+            <a class="menu-item active">
+                <i class="iconfont icon-faxianzhinanzhen" data-default ></i>
+                <i class="iconfont icon-faxianhover" data-active></i>
+                <h5>发现</h5>
+            </a>
+            <a class="menu-item active">
+                <i class="iconfont icon-wo" data-default="icon-wo"></i>
+                <i class="iconfont icon-wode-active" data-active></i>
+                <h5>我</h5>
+            </a>
+        </section>
     </section>
     <script src="./random.js"></script>
 </body>

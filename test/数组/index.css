@@ -1,0 +1,117 @@
+/* 公共类 */
+body,
+ul,p,
+h1,h2,h3,h4,h5{
+    padding: 0;
+    margin: 0;
+}
+h1, h2, h3, h4, h5, h6{
+    font-weight: normal;
+}
+.fleft{
+    float: left;
+}
+.fright{
+    float: right;
+}
+a{
+    text-decoration: none;
+}
+/* 标签样式 */
+.app{
+}
+.head{
+    height: 210px;
+    background-color: #303030;
+    line-height: 210px;
+    text-indent: 40px;
+    font-size: 50px;
+    color: #fff;
+}
+.content{
+    height: 1550px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.content li{
+    height: 190px;
+    border-bottom: 1px solid #d9d9d9;
+    box-sizing: border-box;
+    overflow: hidden;
+    list-style: none;
+    display: block;
+}
+.student .header{
+    width: 144px;
+    height:144px;
+    float: left;
+    margin-left: 42px;
+    margin-top: 23px;
+    border: 1px solid #eee;
+}
+.content .stuMessage{
+    margin-left: 38px;
+}
+.student h3,.student span{
+    font-weight: 400;
+}
+.student h3{
+    font-size:42px;
+    color: #000;
+    /* float: left;  */
+    /* margin-left: 38px; */
+    line-height: 95px; 
+}
+.student span{
+    /* float: left; */
+    /* margin-top: 110px; */
+    /* margin-left: -125px; */
+    font-size:34px;
+    line-height: 75px;
+    color: #9b9b9b;
+}
+.hint{
+    margin-top: 65px;
+    margin-right: 40px;
+    color: #9b9b9b;
+    font-size: 26px;
+}
+.menu{
+    height: 140px;
+    padding-top: 20px;
+}
+.icon-size{
+    width: 75px;
+    height:65px;
+}
+.menu a{
+    float: left;
+    width: 25%;
+    height: 100%;
+    text-align: center;
+}
+.menu h5{
+    font-size: 32px;
+    color: #999;
+}
+.menu i{
+    font-size: 75px;
+    color: #979797;
+}
+.menu [data-active] {
+    display: none;
+}
+
+
+.menu .active:hover h5{
+    color: #45c018   
+}
+
+.menu .active:hover [data-active] {
+    color: #45c018;
+    display: block;
+}
+.menu .active:hover [data-default] {
+    display: none;
+}
+

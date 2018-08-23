@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+        }
+        .banner{
+            width: 1024px;
+            height: 512px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+
+        }
+        @keyframes goright{
+            0%{
+                margin-left: 0;
+            }
+            100%{
+                margin-left: 1024px;
+            }
+        }
+        .bg1{
+            background: url(../imgs/timg.jpg) no-repeat;
+        }
+        .bg2{
+            background: url(../imgs/timg1.jpg) no-repeat;
+        }
+        .bg3{
+            background-image: url(../imgs/timg2.jpg);
+            background-repeat: no-repeat;
+            background-size: 1024px 512px;
+        }
+        .bg4{
+            background: url(../imgs/timg3.jpg) no-repeat;
+        }
+        .btn-group{
+            width: 460px;
+            position: absolute;
+            top: 420px;
+            left: 282px;
+            z-index: 20;
+        }
+        .btn-group button{
+            outline: none;
+            padding: 0;
+            margin: 0;
+            border: none;
+            float: left; 
+            width: 100px; 
+            height: 50px; 
+        }
+        .btn-group button + button{
+            margin-left: 15px;
+        }
+        .btn-group button:focus{
+            outline: 2px solid #aaa;
+        }
+        .banner-btn img{
+            width: 100px; 
+            height: 50px;
+        }
+        .content img{
+
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <div class="banner bg1">
+            <!-- <div class="content">
+                <img src="../imgs/timg.jpg" alt="">
+                <img src="../imgs/timg1.jpg" alt="">
+                <img src="../imgs/timg2.jpg" alt="">
+                <img src="../imgs/timg3.jpg" alt="">
+            </div> -->
+            <div class="btn-group">
+                <button class="banner-btn"><img src="../imgs/timg.jpg" alt=""></button>
+                <button class="banner-btn"><img src="../imgs/timg1.jpg" alt=""></button>
+                <button class="banner-btn"><img src="../imgs/timg2.jpg" alt=""></button>
+                <button class="banner-btn"><img src="../imgs/timg3.jpg" alt=""></button>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        var btns = document.querySelectorAll('.banner-btn');
+        var banner = document.querySelector('.banner');
+        console.log(banner)
+        btns[0].onclick= function(){
+            changeBg(1);  
+        }
+        btns[1].onclick= function(){
+            changeBg(2);  
+        }
+        btns[2].onclick= function(){
+            changeBg(3);  
+        }
+        btns[3].onclick= function(){
+            changeBg(4);  
+        }
+
+
+        function lunbo(){
+            var i = 0;
+            setInterval( function(){
+                i= i ===4 ? 0 : i;
+                changeBg(i+1);
+                i++;
+            }, 2000 );
+        }
+        lunbo();        
+        /** 
+         * 切换样式
+        */
+       function changeBg(m){
+           banner.className = 'banner bg' + m;
+       }
+        </script>
+</body>
+</html>

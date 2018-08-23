@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box-1{
+            width: 100px;
+            height: 50px;
+            background-color: #ffaa11;
+            transition: width 0.5s linear 0.1s;
+        }
+        .box-1:hover{
+            width: 150px;
+        }
+
+        .button {
+            height: 34px;
+            padding: 0 1em 2px;
+            border: 0;
+            background: url(/study/image/gray_baidu_btn.png) 100% -36px no-repeat;
+            background: url(/study/image/gray_baidu_btn.png) no-repeat, url(/study/image/gray_baidu_btn.png) 100% -36px no-repeat;
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader (src='/study/image/gray_baidu_btn.png', sizingMethod='crop');
+            font-size: 14px;
+            overflow: visible;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="box-1"></div>
+    <div class="box-reflect"></div>
+</body>
+</html>

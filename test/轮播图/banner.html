@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        .app{
+            /* overflow: hidden; */
+        }
+        .banner {
+            width: 1024px;
+            height: 512px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #333;
+        }
+
+        .btn-group {
+            width: 460px;
+            position: absolute;
+            /* top: 420px;
+            left: 282px; */
+            bottom: 30px;
+            left: 0;
+            right: 0;
+            margin: auto;
+            z-index: 20;
+        }
+
+        .btn-group button {
+            outline: none;
+            padding: 0;
+            margin: 0;
+            border: none;
+            float: left;
+            width: 100px;
+            height: 50px;
+        }
+
+        .btn-group button+button {
+            margin-left: 15px;
+        }
+
+        /* .btn-group button:focus {
+            outline: 2px solid #aaa;
+        } */
+
+        .banner-btn img {
+            float: left;
+            width: 100px;
+            height: 50px;
+        }
+        .btn-group button.btnActive{
+            outline: 2px solid #aaa;
+        }
+
+
+        .content {
+            position: relative;
+            left: 0;
+            width: 4096px;
+            height: 100%;
+            -ms-transition: all 0.5s;
+            transition: all 0.5s;
+        }
+
+        .content img {
+            /* position: absolute;
+            top: 0; */
+            float: left;
+            width: 1024px;
+            height: 100%;
+            /* margin: 0 auto; */
+            /* transition: all 1s; */
+        }
+        
+        /* .content img.active {
+            margin-left: -1024px;
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <div class="banner">
+            <div class="content">
+                <img src="../imgs/timg.jpg" alt="">
+                <img src="../imgs/timg1.jpg" alt="">
+                <img src="../imgs/timg2.jpg" alt="">
+                <img src="../imgs/timg3.jpg" alt="">
+            </div>
+            <div class="btn-group">
+                <button class="banner-btn btnActive"><img src="../imgs/timg.jpg" alt=""></button>
+                <button class="banner-btn"><img src="../imgs/timg1.jpg" alt=""></button>
+                <button class="banner-btn"><img src="../imgs/timg2.jpg" alt=""></button>
+                <button class="banner-btn"><img src="../imgs/timg3.jpg" alt=""></button>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        var btns = document.querySelectorAll('.banner-btn');
+        var banner = document.querySelector('.banner');
+        var pics = document.querySelectorAll('.content img');
+        var key = 0;
+        // console.log(pics);
+
+        for (var k = 0; k < btns.length; k++) {
+            btns[k].index = k;
+            btns[k].onclick = function () {
+                changePic(this.index);
+                btnActive(this.index);
+            }
+
+            // (function(index){
+            //     btns[index].onclick = function(){
+            //         console.log(index);
+            //         changePic(index);
+            //     }
+            // })(k)
+
+            // btns[k].onclick = function(){
+            //     console.log(k);
+            //     changePic(k);
+            // }
+        };
+
+        function btnActive(t){
+            for(var i=0; i<btns.length; i++){
+                console.log(btns[i]);
+                btns[i].className = 'banner-btn';
+                
+            }
+            btns[t].className = 'banner-btn btnActive';
+           
+        }
+
+        /** 
+         * 切换图片
+        */
+        function changePic(m) {
+            // for (var i = 0; i < pics.length; i++) {
+            //     pics[i].className = ''
+            // }
+            // pics[m].className = 'active';
+
+            var contentEl = document.querySelector('.content')
+            // contentEl.style.left = -1024 * m + 'px';
+            var left = -1024 * m;
+            contentEl.style.cssText = 'transform: translate(' + left + 'px, 0)'
+        }
+
+
+        /** 
+        * 运动
+        */
+        function run(n) {
+            
+        }
+    </script>
+</body>
+
+</html>
