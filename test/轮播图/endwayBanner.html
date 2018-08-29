@@ -11,11 +11,13 @@
             padding: 0;
             margin: 0;
             overflow: hidden;
-            
+
         }
-        .app{
+
+        .app {
             overflow: hidden;
         }
+
         .banner {
             width: 100%;
             height: 100%;
@@ -25,13 +27,14 @@
         }
 
         .btn-group {
-            width: 460px;
+            width: 110px;
+            height: 360px;
             position: absolute;
-            /* top: 420px;
-            left: 282px; */
-            bottom: 30px;
-            left: 0;
-            right: 0;
+            top: 420px;
+            /* left: 282px; */
+            right: 50px;
+            top: 0;
+            bottom: 0;
             margin: auto;
             z-index: 20;
         }
@@ -47,7 +50,7 @@
         }
 
         .btn-group button+button {
-            margin-left: 15px;
+            margin-top: 50px;
         }
 
         /* .btn-group button:focus {
@@ -59,7 +62,8 @@
             width: 100px;
             height: 50px;
         }
-        .btn-group button.btnActive{
+
+        .btn-group button.btnActive {
             outline: 2px solid #aaa;
         }
 
@@ -67,8 +71,8 @@
         .content {
             position: relative;
             left: 0;
-            width: 7690px;
-            height: 100%;
+            width: 100%;
+            height: 4320px;
             -ms-transition: all 0.5s;
             transition: all 1s;
         }
@@ -82,7 +86,7 @@
             /* margin: 0 auto; */
             /* transition: all 1s; */
         }
-        
+
         /* .content img.active {
             margin-left: -1024px;
         } */
@@ -93,26 +97,56 @@
     <div class="app">
         <div class="banner">
             <div class="content">
-                <img src="../imgs/timg.jpg" alt="">
+                <!-- <img src="../imgs/timg.jpg" alt="">
                 <img src="../imgs/timg1.jpg" alt="">
                 <img src="../imgs/timg2.jpg" alt="">
-                <img src="../imgs/timg3.jpg" alt="">
+                <img src="../imgs/timg3.jpg" alt=""> -->
             </div>
             <div class="btn-group">
-                <button class="banner-btn btnActive"><img src="../imgs/timg.jpg" alt=""></button>
+                <!-- <button class="banner-btn btnActive"><img src="../imgs/timg.jpg" alt=""></button>
                 <button class="banner-btn"><img src="../imgs/timg1.jpg" alt=""></button>
                 <button class="banner-btn"><img src="../imgs/timg2.jpg" alt=""></button>
-                <button class="banner-btn"><img src="../imgs/timg3.jpg" alt=""></button>
+                <button class="banner-btn"><img src="../imgs/timg3.jpg" alt=""></button> -->
             </div>
         </div>
     </div>
+    <script src="./js/data.js"></script>
     <script>
+
+        getData(function(list){
+                imgs = list;
+        })
+        var imgContent = document.querySelector('.content');
+        var btnGroup = document.querySelector('.btn-group');
+
+        /** 
+         * 渲染界面
+        */
+        function putImg() {
+            var htmlImg = '';
+            var htmlBtn = '';
+            for (var s = 0; s < imgs.length; s++) {
+                htmlImg += '<img src="' + imgs[s].img + '" alt="">'
+                if (s == 0) {
+                    htmlBtn += '<button class="banner-btn btnActive"><img src="' + imgs[s].img + '" alt=""></button>'
+                }
+                htmlBtn += '<button class="banner-btn"><img src="' + imgs[s].img + '" alt=""></button>'
+            }
+            imgContent.innerHTML = htmlImg;
+            btnGroup.innerHTML = htmlBtn;
+        }
+
+
+
+        // window.onload = putImg;
+        putImg();
+
 
         var btns = document.querySelectorAll('.banner-btn');
         var banner = document.querySelector('.banner');
         var pics = document.querySelectorAll('.content img');
         var key = 0;
-        // console.log(pics);
+        var sizeKey = null;
 
         for (var k = 0; k < btns.length; k++) {
             btns[k].index = k;
@@ -134,29 +168,30 @@
             // }
         };
 
-        function btnActive(t){
-            for(var i=0; i<btns.length; i++){
-                console.log(btns[i]);
+        
+        function getWidthHeight() {
+            var iWidth = document.documentElement.clientWidth;
+            var iHeight = document.documentElement.clientHeight;
+            return [iWidth, iHeight]
+        }
+        
+        function btnActive(t) {
+            for (var i = 0; i < btns.length; i++) {
                 btns[i].className = 'banner-btn';
-                
+
             }
             btns[t].className = 'banner-btn btnActive';
-           
+
         }
 
         /** 
          * 切换图片
         */
         function changePic(m) {
-            // for (var i = 0; i < pics.length; i++) {
-            //     pics[i].className = ''
-            // }
-            // pics[m].className = 'active';
 
             var contentEl = document.querySelector('.content')
-            // contentEl.style.left = -1024 * m + 'px';
-            var left = -1920 * m;
-            contentEl.style.cssText = 'transform: translate(' + left + 'px, 0)'
+            var top = -getWidthHeight()[1] * m;
+            contentEl.style.cssText = 'transform: translate(0,' + top + 'px)'
         }
 
 
@@ -164,16 +199,35 @@
         * 运动
         */
         function run() {
-            var l=0;
-            key = setInterval(function(){  
-                console.log(l)         
+            var l = 0;
+            key = setInterval(function () {
                 changePic(l)
                 btnActive(l)
                 l++;
-                l = l === 4 ? 0: l;
-            },3500)
+                l = l === imgs.length ? 0 : l;
+            }, 3500)
+            console.log(ley);
         }
         run();
+
+        /** 
+        *根据浏览器宽高变化改变图片大小
+        */
+        function imgSize() {
+            // clearInterval(sizeKey);
+            // sizeKey = setInterval(function () {
+                for (var w = 0; w < pics.length; w++) {
+                    pics[w].index = w
+                    pics[w].style.cssText = 'width :' + getWidthHeight()[0] + 'px;' + ' height :' + getWidthHeight()[1] + 'px;';
+                }
+
+            // }, 50)
+        }
+        imgSize();
+
+        window.onresize = imgSize;
+
+
     </script>
 </body>
 

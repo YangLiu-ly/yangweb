@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .body{
+        padding: 0;
+        margin: 0;
+    }
+    .text-box{
+        width: 100px;
+        height: 100px;
+        background-color: #ff9955;
+    }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <a class="text-box"></a>
+    </div>
+    <script>
+        var testBox = document.querySelector('.text-box');
+        console.log('好')
+        var key = null;
+        testBox.onclick = function(){
+            boxActive(testBox, 800, 20);
+        }
+        function boxActive(item, target, speed){
+
+            clearInterval(key);
+            key = setInterval(function(){
+                var distansL = item.offsetLeft;
+                if(distansL === target){
+                    clearInterval(key);
+                }else{
+                    item.style.left = distansL + speed + 'px';
+                }
+            },30)
+        }
+    </script>
+</body>
+</html>

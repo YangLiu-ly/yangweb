@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .app {
+            margin: 0 auto;
+            margin-top: 100px;
+            border: 1px solid #555;
+            position: relative;
+        }
+
+        .app li {
+            position: absolute;
+            font-size: 20px;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        .btn {
+            outline: none;
+            border: none;
+            background-color: #eeff33;
+            color: #fff;
+            font-size: 40px;
+            position: absolute;
+            left: 102px;
+            top: 102px;
+
+        }
+
+        .btn:active {
+            background-color: #d1e027;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <ul>
+            <!-- <li>1</li> -->
+        </ul>
+        <button class="btn">开始</button>
+    </div>
+    <script>
+        var xcount = 6;
+        var ycount = 4;
+        var peaceSize = 100;
+        var sumCount = xcount * 2 + ycount * 2 - 4;
+        var interface = document.querySelector('.app');
+        var liTeam = document.querySelector('.app ul');
+        var btn = document.querySelector('.btn');
+
+        function intoHtml() {
+            addli();
+            //appsize
+            interface.style = 'width:' + (xcount * peaceSize) + 'px; height:' + (ycount * peaceSize) + 'px;'
+            //btnsize
+            btn.style = 'width:' + ((xcount - 2) * peaceSize - 2) + 'px; height:' + ((ycount - 2) * peaceSize - 3) + 'px; top:' + (peaceSize + 1) + ' px; left:' + (peaceSize + 1) + 'px;'
+            peacePosition();
+           
+        }
+        intoHtml()
+        function peacePosition(){
+            var peaces = document.querySelectorAll('.app li');
+             //上面
+             for (var i = 0; i < xcount - 1; i++) {
+                peaces[i].style = 'width:' + peaceSize + 'px; height:' + peaceSize + 'px; top: 0; left:' + i * peaceSize + 'px; border-left:1px solid #888;  border-bottom:1px solid #888;'
+            }
+            //左边
+            for (var i = xcount - 1; i < (xcount + ycount - 1); i++) {
+                peaces[i].style = 'width:' + peaceSize + 'px; height:' + peaceSize + 'px; right: 0; top:' + (i - xcount + 1) * peaceSize + 'px; border-bottom:1px solid #888; border-left:1px solid #888;'
+            }
+            //下面
+            for (var i = (xcount + ycount - 1); i <= (xcount * 2 + ycount - 3); i++) {
+                peaces[i].style = 'width:' + peaceSize + 'px; height:' + peaceSize + 'px; bottom: 0; left:' + ((sumCount - ycount + 1) - i) * peaceSize + 'px; border-left:1px solid #888;  border-top:1px solid #888;'
+            }
+            //右边
+            for (var i = (xcount * 2 + ycount - 2); i < sumCount; i++) {
+                peaces[i].style = 'width:' + peaceSize + 'px; height:' + peaceSize + 'px; left: 0; top:' + (sumCount - i) * peaceSize + 'px; border-top:1px solid #888;  border-right:1px solid #888'
+            }
+        }
+        /** 
+        * 添加li标签
+        */
+        function addli() {
+            html = ''
+            for (var i = 0; i < sumCount; i++) {
+                html += '<li>' + (i + 1) + '</li>'
+            }
+            liTeam.innerHTML = html;
+        }
+    </script>
+</body>
+
+</html>

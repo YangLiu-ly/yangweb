@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .iwindow {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .carouselBar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            transition: all 0.3s linear;
+        }
+
+        .carouselBar li {
+            width: 100%;
+            /* float: left; */
+            overflow: hidden;
+            position: relative;
+        }
+        .carouselBar li img{
+            width: 100%
+        }
+        .carouselBar li h2{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: 5;
+            width: 100%;
+            padding: 10px;
+            margin: 0;
+            background-color: #666;
+
+        }
+
+        .carouselbtn {
+            height: 500px;
+            width: 110px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 30px;
+            margin: auto;
+        }
+
+        .carouselbtn li {
+            width: 100%;
+            display: inline-block;
+            width: 80px;
+            height: 40px;
+            overflow: hidden;
+            margin-right: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .carouselbtn li+li {
+            margin-top: 15px;
+        }
+
+        .carouselbtn li.active {
+            outline: 2px solid #aaa;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="iwindow">
+        <ul class="carouselBar">
+
+        </ul>
+        <ul class="carouselbtn">
+
+        </ul>
+    </div>
+    <script src="../js/data.js"></script>
+    <script>
+
+        getData(function (list) {
+            imgs = list;
+        })
+        var iWindow = 0;
+        var btns = 0;
+        var imgContent = 0;
+        var index = 0;
+        var moveHeight = window.innerHeight;
+        var maxIndex = imgs.length;
+        var key = null;
+
+        function into() {
+            iWindow = q('.iwindow');
+            btns = q('.carouselbtn');
+            imgContent = q('.carouselBar');
+
+            intoHTML()
+            events();
+            console.log(imgContent)
+
+            key = setInterval(playSelf, 2000);
+
+        }
+        into();
+        /** 
+         * 渲染界面
+        */
+        function intoHTML() {
+            var imgHtml = '';
+            var btnHtml = '';
+            for (var i = 0, item; item = imgs[i]; i++) {
+
+                imgHtml += `<li>
+                            <img src="${item.img}">
+                            <h2>${item.title}</h2>
+                        </li>`;
+                var isActive = i === 0 ? 'class = active' : '';
+                btnHtml += `<li ${isActive}><img src="${item.img}" data-index="${i}"></li>`;
+            }
+            imgContent.innerHTML = imgHtml
+            btns.innerHTML = btnHtml;
+        }
+
+        /** 
+         * 事件
+        */
+        function events() {
+            //点击事件
+            btns.onclick = function (e) {
+                var target = e.target;
+                if (target.tagName !== 'IMG') {
+                    target = target.querySelector('img')
+                }
+                var clickIndex = target.dataset.index;
+                index = clickIndex;
+                picsChange();
+            }
+        }
+
+        /** 
+         * 自动播放
+        */
+        function playSelf() {
+            index++;
+            index = index % maxIndex;
+            picsChange();
+            setPicsSize(index)
+
+        }
+
+        /** 
+         * 图片切换
+        */
+        function picsChange() {
+            imgContent.style.transform = 'translateY(' + -index * moveHeight + 'px)';
+
+            var childs = imgContent.children;
+            console.log(childs)
+            for (var i = 0; item = childs[i]; i++) {
+                item.classList.remove('active');
+            }
+            
+            childs[index].classList.add('active')
+        }
+        /** 
+         * 按钮激活
+        */
+        function btnsChange(){
+            
+        }
+
+        function setPicsSize(i){
+            var iHight =  document.documentElement.clientHeight;
+            var iWidth = document.documentElement.clientWidth;
+            var childs = imgContent.children
+
+            for(i=0, item; item=childs[i]; i++){
+                childs[i].style = 'height:'+ iHight +'px;'+'width:' + iWidth + 'px;'
+            }
+
+        }
+        //选择器
+        function q(selector) {
+            return document.querySelector(selector);
+        }
+    </script>
+</body>
+
+</html>

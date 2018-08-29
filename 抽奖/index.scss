@@ -1,0 +1,160 @@
+body,
+button {
+  padding: 0;
+  margin: 0;
+}
+// .app {
+//   width: 750px;
+//   height: 470px;
+//   margin: 0 auto;
+//   margin-top: 50px;
+//   position: relative;
+//   .top-part span + span,
+//   .bottom-part span + span {
+//     margin-left: 20px;
+//   }
+//   .right {
+//     width: 104px;
+//     position: absolute;
+//     right: 10px;
+//     top: 122px;
+//   }
+//   .right span + span,
+//   .left span + span {
+//     margin-top: 20px;
+//   }
+//   .left {
+//     width: 104px;
+//     position: absolute;
+//     left: 0;
+//     top: 122px;
+//   }
+//   .bottom-part {
+//     position: absolute;
+//     height: 104px;
+//     bottom: 0;
+//   }
+// }
+// .app span {
+//   display: inline-block;
+//   width: 100px;
+//   height: 100px;
+//   border: 1px solid #eee;
+//   line-height: 100px;
+//   text-align: center;
+// //   transform: all 0.2 case-in;
+//   &.active {
+//     background-color: #0adce4;
+//   }
+// }
+// .start-btn {
+//   width: 500px;
+//   height: 225px;
+//   background: #ddaa33;
+//   border: none;
+//   outline: none;
+//   position: absolute;
+//   top: 120px;
+//   left: 120px;
+//   font-size: 32px;
+//   color: #fff;
+//   cursor: pointer;
+//   &:active {
+//     background-color: #ccbb99;
+//   }
+
+//   &:disabled {
+//     background: #aaa;
+//     cursor: default;
+//   }
+// }
+
+
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// 
+$size: 120px;
+$xCount: 8;
+$yCount: 4;
+
+// 
+$halfLength: $xCount + $yCount;
+$sumCount: $xCount * 2 + $yCount * 2 - 4;
+
+.awards{
+  width: $size * $xCount;
+  height: $size * $yCount;
+  border: 1px solid #ddd;
+  margin: 0 auto;
+  position: relative;
+
+  li {
+    position: absolute;
+    width: $size;
+    height: $size;
+    text-align: center;
+    line-height: $size;
+    font-size: 50px;
+
+    $border: 1px solid #ddd;
+
+    // top
+    /** 相当于for循环 使用through相当于'<',使用to相当于'<='*/
+    @for $i from 1 through $xCount {
+      &:nth-child(#{$i}) {
+        top: 0;
+        left: ($i - 1) * $size;
+        border-bottom: $border;
+        border-right: $border;
+      }
+    }
+    // right
+    @for $i from $xCount + 1 to $halfLength {
+      &:nth-child(#{$i}) {
+        top: ($i - $xCount) * $size;
+        left: ($xCount - 1) * $size;
+        border-bottom: $border;
+        border-left: $border;
+      }
+    }
+
+    // bottom
+    @for $i from $halfLength through $sumCount - ($yCount - 2) {
+      &:nth-child(#{$i}) {
+        top: ($yCount - 1) * $size;
+        left: ($xCount - 1 - ($i - $halfLength + 1)) * $size;
+        border-top: $border;
+        border-left: $border;
+      }
+    }
+
+    // left
+    $lastStart: $sumCount - $yCount + 3;
+    @for $i from $lastStart through $sumCount {
+      &:nth-child(#{$i}) {
+        top: ($yCount - 1 - ($i - ($lastStart - 1))) * $size;
+        left: 0;
+        border-bottom: $border;
+        border-right: $border;
+      }
+    }
+  }
+
+
+  .btn-start{
+    position: absolute;
+    left: $size;
+    top: $size;
+    width: $size * ($xCount - 2);
+    height: $size * ($yCount - 2);
+    background: #3983FF;
+    color: #fff;
+    border: none;
+    font-size: 60px;
+  }
+}

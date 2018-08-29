@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div class="app">
+        <div class="top-part">
+            <span class="peace">1</span>
+            <span class="peace">2</span>
+            <span class="peace">3</span>
+            <span class="peace">4</span>
+            <span class="peace">5</span>
+            <span class="peace">6</span>
+        </div>
+
+        <div class="right">
+            <span class="peace">7</span>
+            <span class="peace">8</span>
+        </div>
+        <button class="start-btn">开始</button>
+        <div class="bottom-part">
+            <span class="peace">14</span>
+            <span class="peace">13</span>
+            <span class="peace">12</span>
+            <span class="peace">11</span>
+            <span class="peace">10</span>
+            <span class="peace">9</span>
+        </div>
+        <div class="left">
+            <span class="peace">16</span>
+            <span class="peace">15</span>
+        </div>
+    </div>
+    <script>
+
+        //获取peace对象
+        var peaces = [];
+        var peaTop = document.querySelectorAll('.top-part span');
+        var peaRight = document.querySelectorAll('.right span');
+        var peaBottom = document.querySelectorAll('.bottom-part span');
+        var peaLeft = document.querySelectorAll('.left span');
+        peaces = [].concat(toArr(peaTop), toArr(peaRight), reArr(peaBottom), reArr(peaLeft));
+
+        var btn = document.querySelector('.start-btn');
+        var key = null;
+        var speed = 0;
+        var index = 0;
+
+
+        //事件
+        btn.onclick = function () {
+            if (this.disabled) {
+                return;
+            }
+
+            this.disabled = true;
+            peaceRun()
+        }
+        //运动
+        function peaceRun() {
+            peaceActive(index);
+            index++;
+            index = index === peaces.length ? 0 : index;
+            speed += 5;
+            if (speed === 300) {
+                return;
+            }
+            
+            setTimeout(peaceRun, speed);
+        }
+
+        /** 
+         * peace激活
+        */
+        function peaceActive(i) {
+            for (var m = 0; m < peaces.length; m++) {
+                peaces[m].className = 'peace';
+            }
+            peaces[i].className = 'peace active';
+        }
+
+        /** 
+         * 将对象元素翻转并返回一个数组
+        */
+        function reArr(p) {
+            var arr = [];
+            for (var i = 0, item; item = p[i]; i++) {
+                arr.unshift(item);
+            }
+            return arr;
+        }
+        /** 
+         * 将对象转换为一个数组
+         */
+        function toArr(p) {
+            var arr = [];
+
+            for (var i = 0, item; item = p[i]; i++) {
+                arr.push(item);
+            }
+            return arr;
+        }  
+    </script>
+</body>
+
+</html>
